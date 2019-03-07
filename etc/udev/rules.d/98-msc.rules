@@ -1,0 +1,30 @@
+# Debug USB sticks
+
+# Will's USB
+# Serial number 1740010C5B02580F is "J Williams", a black 2GB Cruzer stick
+KERNEL=="sd[a-z]1", ATTRS{serial}=="1740010C5B02580F", SYMLINK+="DebugUSB", RUN+="/bin/mount /dev/%k /media/DebugUSB", GOTO="custom_names_end"
+KERNEL=="sd[a-z]1", ATTRS{serial}=="051110003BC41C03", SYMLINK+="DebugUSB", RUN+="/bin/mount /dev/%k /media/DebugUSB", GOTO="custom_names_end"
+# College USB
+KERNEL=="sd[a-z]1", ATTRS{serial}=="AA0100000173", SYMLINK+="DebugUSB", RUN+="/bin/mount /dev/%k /media/DebugUSB", GOTO="custom_names_end"
+KERNEL=="sd[a-z]1", ATTRS{serial}=="AA0100000182", SYMLINK+="DebugUSB", RUN+="/bin/mount /dev/%k /media/DebugUSB", GOTO="custom_names_end"
+
+# Arena USB sticks
+# Will's USB
+KERNEL=="sd[a-z]1", ATTRS{serial}=="25173301F2464900", SYMLINK+="ArenaUSB", RUN+="/bin/mount /dev/%k /media/ArenaUSB", GOTO="custom_names_end"
+KERNEL=="sd[a-z]1", ATTRS{serial}=="08018A4153407992", SYMLINK+="ArenaUSB", RUN+="/bin/mount /dev/%k /media/ArenaUSB", GOTO="custom_names_end"
+KERNEL=="sd[a-z]1", ATTRS{serial}=="09917A4173B12A27", SYMLINK+="ArenaUSB", RUN+="/bin/mount /dev/%k /media/ArenaUSB", GOTO="custom_names_end"
+KERNEL=="sd[a-z]1", ATTRS{serial}=="0D0DC315270030B4", SYMLINK+="ArenaUSB", RUN+="/bin/mount /dev/%k /media/ArenaUSB", GOTO="custom_names_end"
+
+# College USB
+KERNEL=="sd[a-z]1", ATTRS{serial}=="AA0100000187", SYMLINK+="ArenaUSB", RUN+="/bin/mount /dev/%k /media/ArenaUSB", GOTO="custom_names_end"
+KERNEL=="sd[a-z]1", ATTRS{serial}=="AA0100000201", SYMLINK+="ArenaUSB", RUN+="/bin/mount /dev/%k /media/ArenaUSB", GOTO="custom_names_end"
+KERNEL=="sd[a-z]1", ATTRS{serial}=="AA0400000163", SYMLINK+="ArenaUSB", RUN+="/bin/mount /dev/%k /media/ArenaUSB", GOTO="custom_names_end"
+KERNEL=="sd[a-z]1", ATTRS{serial}=="AA0400000141", SYMLINK+="ArenaUSB", RUN+="/bin/mount /dev/%k /media/ArenaUSB", GOTO="custom_names_end"
+
+# Fallback case for any other USB storage
+ACTION=="add", KERNEL=="sd[a-z]1", SYMLINK+="RobotUSB", RUN+="/bin/mount /dev/%k /media/RobotUSB"
+
+# Remove storage - don't really want random reboots while moving storage safely, so commented out
+#KERNEL=="sd[a-z]1", ATTRS{serial}=="1740010C5B02580F", ACTION=="remove", RUN+="/sbin/reboot", GOTO="custom_names_end"
+
+LABEL="custom_names_end"
